@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rest-api-project
+spec:
+  selector:
+    matchLabels:
+      app:  rest-api-project
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app:  rest-api-project
+    spec:
+      containers:
+        - name:  rest-api-project
+          image: dock123sapna/ rest-api-project
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          env:
+            - name: MONGO_URL
+              value: mongodb://mongodb:27017/serverdb
